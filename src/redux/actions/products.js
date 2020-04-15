@@ -6,7 +6,10 @@ export const ADD_QUANTITY = 'ADD_QUANTITY';
 export const addToCart= (id) => {
     return {
         type: ADD_TO_CART,
-        id
+        payload: {
+            id,
+            quantity: 1,
+        }
     }
 };
 

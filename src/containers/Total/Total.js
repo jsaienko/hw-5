@@ -1,10 +1,22 @@
-import React from 'react';
-
+import React, {useMemo} from 'react';
 import { connect } from 'react-redux';
 
 import './Total.scss';
 
-function Total({total}) {
+function Total({addedProductsArray}) {
+
+    const total = useMemo(() => {
+        let totalPrice = 0;
+
+        addedProductsArray.forEach(product => {
+            totalPrice += (product.price * product.quantity);
+        });
+
+        return totalPrice;
+
+    }, [addedProductsArray]);
+
+
     return (
         <div className='total'>Total price: {total}$</div>
     )
@@ -13,8 +25,8 @@ function Total({total}) {
 
 const mapStateToProps = (state)=>{
     return{
-        addedProducts: state.addedProducts,
-        total: state.total
+        products: state.products,
+        cart: state.cart
     }
 };
 

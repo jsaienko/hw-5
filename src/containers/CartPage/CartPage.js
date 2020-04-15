@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import { connect } from 'react-redux';
-import { removeProduct, addQuantity, subtractQuantity} from '../../redux/actions/products';
+import { removeProduct, addQuantity, subtractQuantity } from '../../redux/actions/products';
 
 import Total from '../Total';
 
 import './CartPage.scss';
 
-function CartPage({products, addedProducts, removeProduct, addQuantity, subtractQuantity}) {
+function CartPage({products, cart, removeProduct, addQuantity, subtractQuantity}) {
     const [quantity, updateQuantity] = useState(1);
+    console.log(products);
+    console.log(cart);
 
     const handleRemove = (id)=>{
         removeProduct(id);
@@ -25,15 +27,17 @@ function CartPage({products, addedProducts, removeProduct, addQuantity, subtract
 
     const findAddedProducts = () => {
         let productsArray = [];
-        addedProducts.forEach((addedProduct) => {
-            productsArray.push(products.find(product=> product.id === addedProduct));
+        cart.forEach((addedProduct) => {
+            let currentProduct = products.find(product=> product.id === addedProduct.id);
+            currentProduct.quantity = addedProduct.quantity;
+            productsArray.push(currentProduct);
         });
         return productsArray;
     };
 
     let addedProductsArray = findAddedProducts();
 
-    let totalPrice =  addedProductsArray.length ? <Total/> : null;
+    let totalPrice =  addedProductsArray.length ? <Total addedProductsArray={addedProductsArray}/> : null;
 
     let addedProductsInCart = addedProductsArray.length ?
         (
@@ -82,15 +86,15 @@ function CartPage({products, addedProducts, removeProduct, addQuantity, subtract
 const mapStateToProps = (state)=>{
   return {
       products: state.products,
-      addedProducts: state.addedProducts
+      cart: state.cart,
   }
 };
 
 const mapDispatchToProps = (dispatch)=>{
   return{
-    removeProduct: (id)=>{dispatch(removeProduct(id))},
-    addQuantity: (id)=>{dispatch(addQuantity(id))},
-    subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
+      removeProduct: (id)=>{dispatch(removeProduct(id))},
+      addQuantity: (id)=>{dispatch(addQuantity(id))},
+      subtractQuantity: (id)=>{dispatch(subtractQuantity(id))}
   }
 };
 

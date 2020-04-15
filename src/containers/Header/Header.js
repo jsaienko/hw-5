@@ -3,8 +3,9 @@ import {NavLink} from "react-router-dom";
 
 import { connect } from 'react-redux';
 
-function Header({addedProducts}) {
-    const productsInCart = addedProducts.length ? <span>  ({addedProducts.length})</span> : null;
+function Header({cart}) {
+    const productsInCart = cart.length ? <span>  ({cart.length})</span> : null;
+
     return (
         <header className='main-header'>
             <nav className='main-nav'>
@@ -31,7 +32,7 @@ function Header({addedProducts}) {
 const mapStateToProps = (state)=>{
     return {
         products: state.products,
-        addedProducts: state.addedProducts
+        cart: state.cart
     }
 };
 
