@@ -33,13 +33,13 @@ const Main = () => {
   return transitions.map(({ item, props: transition, key }) => (
       <animated.div key={key} style={transition} className="contaier">
         <Switch location={item}>
-          <Route path='/' exact>
+          <Route path='/hw-5/' exact>
             <HomePage />
           </Route>
-          <Route path='/products' exact>
+          <Route path='/hw-5/products' exact>
             <ProductsPage />
           </Route>
-          <Route path='/cart' exact>
+          <Route path='/hw-5/cart' exact>
             <CartPage />
           </Route>
           <Route path='*'>
