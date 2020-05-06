@@ -11,16 +11,16 @@ function Header({cart}) {
             <nav className='main-nav'>
                 <ul className='main-nav__list'>
                     <li className='main-nav__item'>
-                        <NavLink className='item' activeClassName='active-nav' to='/'>
+                        <NavLink className='item' activeClassName='active-nav' to='/hw-5/'>
                             <img src='img/logo.png' width='120' height='80' alt='Logo'/>
                             Home
                         </NavLink>
                     </li>
                     <li className='main-nav__item'>
-                        <NavLink className='item' activeClassName='active-nav' to='/products'>Products</NavLink>
+                        <NavLink className='item' activeClassName='active-nav' to='/hw-5/products'>Products</NavLink>
                     </li>
                     <li className='main-nav__item main-nav__item--right'>
-                        <NavLink className='item' activeClassName='active-nav' to='/cart'>Cart {productsInCart}</NavLink>
+                        <NavLink className='item' activeClassName='active-nav' to='/hw-5/cart'>Cart {productsInCart}</NavLink>
                         <img className='main-nav__item-img' src='img/cart-logo.png' width='120' height='100' alt='Cart logo'/>
                     </li>
                 </ul>
